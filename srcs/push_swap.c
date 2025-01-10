@@ -3,23 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mecauchy <mecauchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 20:45:46 by mcauchy-          #+#    #+#             */
-/*   Updated: 2025/01/08 12:31:20 by mecauchy         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:43:41 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-void	ft_error(char *exit_msg, int exit_code)
+void	ft_error(char *exit_msg)
 {
-	while (exit_msg)
+	int	i;
+
+	i = 0;
+	while (exit_msg[i])
 	{
-		write(1, exit_msg, 1);
-		exit_msg++;
+		write(1, &exit_msg[i], 1);
+		i++;
 	}
-	exit(exit_code);
+	exit(0);
 }
 
 char	**ft_free(char **to_free)
@@ -38,18 +41,31 @@ char	**ft_free(char **to_free)
 	return (NULL);
 }	
 
-t_stack	*initialize_stack(char **av)
+t_stack	*initialize_stack(int ac, char **av)
 {
 	t_stack	*stack_a;
 	int		i;
+	char	**new_lst;
 
-	stack_a = ft_lstnew(ft_atoi(av[1]));
-	i = 2;
-	while (av[i])
+	if (ac == 2)
 	{
-		ft_lstadd_back(&stack_a, ft_lstnew(atoi(av[i])));
+		new_lst = ft_split(av[1], ' ');
+		stack_a = ft_lstnew(ft_atoi(new_lst[0]));		
+		i = 1;
+	}
+	else
+	{
+		new_lst = av;
+		stack_a = ft_lstnew(ft_atoi(new_lst[1]));
+		i = 2;
+	}
+	while (new_lst[i])
+	{
+		ft_lstadd_back(&stack_a, ft_lstnew(atoi(new_lst[i])));
 		i++;
 	}
+	if (ac == 2)
+		ft_free(new_lst);
 	return (stack_a);
 }
 
@@ -70,7 +86,7 @@ char	**parse_args(int ac, char **av)
 		argv = av;
 	else
 	{
-		ft_error("Error", 0);
+		ft_error("Error\n");
 		return (NULL);
 	}
 	return (argv);
@@ -114,28 +130,29 @@ int	main(int ac, char **av)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	char	**args;
-	int		i;
+	// char	**args;
+	// int		i;
 
 	if (ac < 2)
 		return (1);
-	args = parse_args(ac, av);
-	if (!args)
-		return (1);
-	if (ac == 2)
-		i = 0;
-	else
-		i = 1;
-	if (!check_arg(av + i))
-	{
-		ft_error("Error", 0);
-		if (ac == 2)
-			ft_free(args);
-		return (1);
-	}
+	check_arg(ac, av);
+	// args = parse_args(ac, av);
+	// if (!args)
+	// 	return (1);
+	// if (ac == 2)
+	// 	i = 0;
+	// else
+	// 	i = 1;
+	// if (!check_arg(av + i))
+	// {
+	// 	ft_error("Error\n");
+	// 	if (ac == 2)
+	// 		ft_free(args);
+	// 	return (1);
+	// }
 	//stack_a = _lst();
 	//stack_a->nb = atoi(av[1]);
-	stack_a = initialize_stack(args + i);
+	stack_a = initialize_stack(ac, av);
 	stack_b = NULL;
 	print_lst(stack_a);
 	push_swap(&stack_a, &stack_b);
@@ -144,8 +161,8 @@ int	main(int ac, char **av)
 	// radix_sort(&stack_a, &stack_b, stack_size(stack_a))
 	free_stack(&stack_a);
 	free_stack(&stack_b);
-	if (ac == 2)
-		ft_free(args);
+	// if (ac == 2)
+	// 	ft_free(args);
 	return (0);
 }
 

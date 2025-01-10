@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mecauchy <mecauchy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 20:45:56 by mcauchy-          #+#    #+#             */
-/*   Updated: 2025/01/08 12:49:19 by mecauchy         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:43:22 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
+// # include "./libft.h"
 
 typedef struct s_stack
 {
@@ -71,13 +72,13 @@ int		check_doublon(char **av);
 int		check_num(char *av);
 int		check_zero(char *av);
 long	ft_atol(const char *str);
-int		check_arg(char **av);
+void	check_arg(int ac, char **av);
 
 // PUSH_SWAP //
 
-void	ft_error(char *exit_msg, int exit_code);
+void	ft_error(char *exit_msg);
 char	**ft_free(char **to_free);
-t_stack	*initialize_stack(char **av);
+t_stack	*initialize_stack(int ac, char **av);
 char	**parse_args(int ac, char **av);
 int		is_sorted(t_stack **lst);
 void	push_swap(t_stack **stack_a, t_stack **stack_b);

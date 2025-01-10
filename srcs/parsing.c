@@ -6,7 +6,7 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:46:40 by mcauchy-          #+#    #+#             */
-/*   Updated: 2025/01/04 17:48:43 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:45:55 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,27 +148,38 @@ int	ft_len(char **av)
 	return (i);
 }
 
-int	check_doublon(char **av)
-{
-	int	i;
-	int	j;
-	int	len;
+// int	check_doublon(int ac, char **av)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	len;
 
-	len = ft_len(av);
-	i = 1;
-	while (i < len)
-	{
-		j = i + 1;
-		while (j < len)
-		{
-			if (ft_atoi(av[i]) == ft_atoi(av[j]))
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
+// 	len = ft_len(av);
+// 	i = 1;
+// 	while (i < len)
+// 	{
+// 		j = i + 1;
+// 		while (j < len)
+// 		{
+// 			if (ft_atoi(av[i]) == ft_atoi(av[j]))
+// 				return (1);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }
+
+// int	check_doublon(char *str, char c, int nb)
+// {
+// 	while (nb >= 0)
+// 	{
+// 		if (str[nb] == c)
+// 			return (0);
+// 		nb--;
+// 	}
+// 	return (1);
+// }
 
 int	check_num(char *av)
 {
@@ -228,24 +239,55 @@ long	ft_atol(const char *str)
 	return (sign * res);
 }
 
-int	check_arg(char **av)
+int	check_doublon(char **av)
+{
+	int	i;
+	int	j;
+	int	len;
+
+	len = ft_len(av);
+	i = 0;
+	while (i < len)
+	{
+		j = i + 1;
+		while (j < len)
+		{
+			if (ft_atoi(av[i]) == ft_atoi(av[j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+void	check_arg(int ac, char **av)
 {
 	int	i;
 	long	tmp;
+	char	**check;
 
-	i = 1;
-	if (check_doublon(av))
-		return (0);
-	while (av[i])
+	i = 0;
+	if (ac == 2)
+		check = ft_split(av[1], ' ');
+	else
 	{
-		if (!check_num(av[i]))
-			return (0);
-		// if (!check_zero(av[i]))
+		i = 1;
+		check = av;
+	}
+	while (check[i])
+	{
+		if (check_doublon(check))
+			ft_error("Error11\n");
+		if (!check_num(check[i]))
+			ft_error("Error22\n");
+		// if (!check_zero(check[i]))
 		// 	return (0);
-		tmp = ft_atol(av[i]);
+		tmp = ft_atol(check[i]);
 		if (!check_overflow(tmp))
-			return (0);
+			ft_error("Error33\n");						
 		i++;
 	}
-	return (1);
+	if (ac == 2)
+		ft_free(check);
 }
