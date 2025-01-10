@@ -6,7 +6,7 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 20:45:56 by mcauchy-          #+#    #+#             */
-/*   Updated: 2025/01/10 12:43:22 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:49:40 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,19 @@ char	**parse_args(int ac, char **av);
 int		is_sorted(t_stack **lst);
 void	push_swap(t_stack **stack_a, t_stack **stack_b);
 
+// a supp /
+
+ int	get_min(t_stack **stack, int val);
+ void	sort_4(t_stack **stack_a, t_stack **stack_b);
+ void	sort_5(t_stack **stack_a, t_stack **stack_b);
+ int	get_distance(t_stack **stack, int index);
+
+
 // SIMPLE SORT //
 
 int	find_max(t_stack *lst);
 int	find_min(t_stack *stack_a);
+int	find_position(t_stack *stack_a, int min);
 int	max_bits(t_stack **lst);
 void	sort_3(t_stack **lst);
 void	sort_5(t_stack **stack_a, t_stack **stack_b);
