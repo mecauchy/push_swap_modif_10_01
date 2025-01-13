@@ -6,7 +6,7 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:46:40 by mcauchy-          #+#    #+#             */
-/*   Updated: 2025/01/10 12:45:55 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:55:27 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,7 +263,7 @@ int	check_doublon(char **av)
 
 void	check_arg(int ac, char **av)
 {
-	int	i;
+	int		i;
 	long	tmp;
 	char	**check;
 
@@ -285,7 +285,7 @@ void	check_arg(int ac, char **av)
 		// 	return (0);
 		tmp = ft_atol(check[i]);
 		if (!check_overflow(tmp))
-			ft_error("Error33\n");						
+			ft_error("Error33\n");
 		i++;
 	}
 	if (ac == 2)

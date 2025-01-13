@@ -6,7 +6,7 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 20:45:46 by mcauchy-          #+#    #+#             */
-/*   Updated: 2025/01/10 12:43:41 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:59:20 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,14 @@ char	**ft_free(char **to_free)
 	}
 	free(to_free);
 	return (NULL);
-}	
+}
+
+// void	initialize_index(t_stack *lst, int size)
+// {
+// 	t_stack	*tmp;
+// 	int		max;
+// 	max = 0;
+// }
 
 t_stack	*initialize_stack(int ac, char **av)
 {
@@ -50,7 +57,7 @@ t_stack	*initialize_stack(int ac, char **av)
 	if (ac == 2)
 	{
 		new_lst = ft_split(av[1], ' ');
-		stack_a = ft_lstnew(ft_atoi(new_lst[0]));		
+		stack_a = ft_lstnew(ft_atoi(new_lst[0]));
 		i = 1;
 	}
 	else
@@ -117,13 +124,13 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b)
 		sort_3(stack_a);
 	else if (!is_sorted(stack_a) && stack_size <= 5)
 		sort_5(stack_a, stack_b);
-	// else if (!is_sorted(stack_a))
-	// 	radix_sort(stack_a, stack_b);
-	// else
-	// {
-	// 	free_stack(stack_a);
-	// 	free_stack(stack_b);
-	// }
+	else if (!is_sorted(stack_a))
+		radix_sort(stack_a, stack_b);
+	else
+	{
+		free_stack(stack_a);
+		free_stack(stack_b);
+	}
 }
 
 int	main(int ac, char **av)
@@ -155,8 +162,12 @@ int	main(int ac, char **av)
 	stack_a = initialize_stack(ac, av);
 	stack_b = NULL;
 	print_lst(stack_a);
+	printf("stack_b\n");
+	print_lst(stack_b);
 	push_swap(&stack_a, &stack_b);
 	print_lst(stack_a);
+	printf("stack_b\n");
+	print_lst(stack_b);
 	// SIMPLE SORT //
 	// radix_sort(&stack_a, &stack_b, stack_size(stack_a))
 	free_stack(&stack_a);
@@ -165,4 +176,3 @@ int	main(int ac, char **av)
 	// 	ft_free(args);
 	return (0);
 }
-

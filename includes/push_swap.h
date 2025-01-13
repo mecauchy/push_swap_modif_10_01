@@ -6,7 +6,7 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 20:45:56 by mcauchy-          #+#    #+#             */
-/*   Updated: 2025/01/10 16:49:40 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2025/01/13 18:46:08 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 typedef struct s_stack
 {
 	int				nb;
+	int				index;
 	struct s_stack	*next;
 	struct s_stack	*prev;
 }				t_stack;
@@ -55,16 +56,15 @@ void	ft_putendl_fd(char *s, int fd);
 int		reverse_rotate(t_stack **lst);
 t_stack	*lst_before_last(t_stack *lst);
 
-
 //A SUPP LIBFT//
-int	ft_isalnum(int c);
+int		ft_isalnum(int c);
 char	**ft_split(char const *s, char c);
 // static char	*ft_wdcpy(char *str, int size);
 // static int	ft_wrdcnt(char *str, char charset);
 // static int	ft_ltrcnt(char *str, char charset);
 // static int	ft_is_sep(char *str, char charset);
-int	ft_atoi(const char *str);
-int	ft_isdigit(int c);
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
 
 int		check_overflow(long nb);
 int		ft_len(char **av);
@@ -85,18 +85,17 @@ void	push_swap(t_stack **stack_a, t_stack **stack_b);
 
 // a supp /
 
- int	get_min(t_stack **stack, int val);
- void	sort_4(t_stack **stack_a, t_stack **stack_b);
- void	sort_5(t_stack **stack_a, t_stack **stack_b);
- int	get_distance(t_stack **stack, int index);
-
+void	sort_5(t_stack **stack_a, t_stack **stack_b);
+int		get_distance(t_stack **stack, int index);
 
 // SIMPLE SORT //
 
-int	find_max(t_stack *lst);
-int	find_min(t_stack *stack_a);
-int	find_position(t_stack *stack_a, int min);
-int	max_bits(t_stack **lst);
+void	push_to_b(t_stack **stack_a, t_stack **stack_b, int min);
+int		find_max(t_stack *lst);
+int		find_min(t_stack *stack_a);
+int		find_next_min(t_stack *stack_a, int min);
+int		find_position(t_stack *stack_a, int min);
+int		max_bits(t_stack **lst);
 void	sort_3(t_stack **lst);
 void	sort_5(t_stack **stack_a, t_stack **stack_b);
 
