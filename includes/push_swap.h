@@ -6,7 +6,7 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 20:45:56 by mcauchy-          #+#    #+#             */
-/*   Updated: 2025/01/13 18:46:08 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:09:49 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,20 +76,20 @@ void	check_arg(int ac, char **av);
 
 // PUSH_SWAP //
 
-void	ft_error(char *exit_msg);
-char	**ft_free(char **to_free);
 t_stack	*initialize_stack(int ac, char **av);
 char	**parse_args(int ac, char **av);
 int		is_sorted(t_stack **lst);
 void	push_swap(t_stack **stack_a, t_stack **stack_b);
+void	ft_putback_in_stack(t_stack **stack_a, t_stack **stack_b);
 
 // a supp /
 
-void	sort_5(t_stack **stack_a, t_stack **stack_b);
 int		get_distance(t_stack **stack, int index);
+void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 
 // SIMPLE SORT //
 
+void	sort_5(t_stack **stack_a, t_stack **stack_b);
 void	push_to_b(t_stack **stack_a, t_stack **stack_b, int min);
 int		find_max(t_stack *lst);
 int		find_min(t_stack *stack_a);
@@ -97,10 +97,11 @@ int		find_next_min(t_stack *stack_a, int min);
 int		find_position(t_stack *stack_a, int min);
 int		max_bits(t_stack **lst);
 void	sort_3(t_stack **lst);
-void	sort_5(t_stack **stack_a, t_stack **stack_b);
 
 // UTILS //
 
 void	free_stack(t_stack **lst);
+void	ft_error(char *exit_msg);
+char	**ft_free(char **to_free);
 
 #endif

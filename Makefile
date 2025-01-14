@@ -6,13 +6,13 @@
 #    By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/26 20:45:33 by mcauchy-          #+#    #+#              #
-#    Updated: 2025/01/04 17:54:31 by mcauchy-         ###   ########.fr        #
+#    Updated: 2025/01/14 16:49:01 by mcauchy-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	push_swap
 
-SRCS_FILES	=	push_swap.c utils.c move.c singleton.c parsing.c simple_sort.c 
+SRCS_FILES	=	push_swap.c utils.c move.c singleton.c parsing.c simple_sort.c radix_sort.c
 
 SRC_DIR		=	srcs
 

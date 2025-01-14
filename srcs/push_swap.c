@@ -6,7 +6,7 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 20:45:46 by mcauchy-          #+#    #+#             */
-/*   Updated: 2025/01/13 18:59:20 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:39:16 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ char	**ft_free(char **to_free)
 		i++;
 	}
 	free(to_free);
+	printf("aaaaaaa\n");
 	return (NULL);
 }
 

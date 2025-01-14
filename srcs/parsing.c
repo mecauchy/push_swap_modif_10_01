@@ -6,7 +6,7 @@
 /*   By: mcauchy- <mcauchy-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 17:46:40 by mcauchy-          #+#    #+#             */
-/*   Updated: 2025/01/13 18:55:27 by mcauchy-         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:59:01 by mcauchy-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,7 +190,7 @@ int	check_num(char *av)
 		i++;
 	while (av[i])
 	{
-		if (!ft_isalnum(av[i]))
+		if (!ft_isdigit(av[i]))
 			return (0);
 		i++;
 	}
@@ -268,6 +268,10 @@ void	check_arg(int ac, char **av)
 	char	**check;
 
 	i = 0;
+	if (!av[1][i])
+	{
+		ft_error("Error11\n");
+	}
 	if (ac == 2)
 		check = ft_split(av[1], ' ');
 	else
@@ -277,10 +281,18 @@ void	check_arg(int ac, char **av)
 	}
 	while (check[i])
 	{
-		if (check_doublon(check))
+		if (check_doublon(check + i))
+		{
+			if (ac == 2)
+				ft_free(check);
 			ft_error("Error11\n");
+		}
 		if (!check_num(check[i]))
-			ft_error("Error22\n");
+		{
+			if (ac == 2)
+				ft_free(check);
+			ft_error("Error22\n");			
+		}
 		// if (!check_zero(check[i]))
 		// 	return (0);
 		tmp = ft_atol(check[i]);
